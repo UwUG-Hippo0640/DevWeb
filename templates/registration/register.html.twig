@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Register{% endblock %}
+
+{% block body %}
+<div id="layoutSidenav_content">
+                <main>
+                    <div class="container-fluid px-4">
+                        <h1 class="mt-4">Static Navigation</h1>
+                        <ol class="breadcrumb mb-4">
+                            <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+                            <li class="breadcrumb-item active">Static Navigation</li>
+                        </ol>
+                        <div class="card mb-4">
+                            <div class="card-body">
+
+                            <h1 class="h3 mb-3 font-weight-normal">Creer un Compte</h1>
+                            {{ form_errors(registrationForm) }}
+
+                            {{ form_start(registrationForm) }}
+                                {{ form_row(registrationForm.email) }}
+
+                            </br>
+
+                                {{ form_row(registrationForm.plainPassword, {
+                                    label: 'Password'
+                                }) }}
+
+                            </br>
+
+                                {{ form_row(registrationForm.agreeTerms) }}
+
+                            </br>
+
+                                <button type="submit" class="btn btn-primary">Creer</button>
+                            {{ form_end(registrationForm) }}
+                            </div>
+                        </div>
+                    </div>
+                </main>
+            </div>
+        </div>
+{% endblock %}

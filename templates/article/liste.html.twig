@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello LuckyController!{% endblock %}
+
+{% block body %}
+            <div id="layoutSidenav_content">
+                <main>
+                    <div class="container-fluid px-4">
+                        <h1 class="mt-4">Static Navigation</h1>
+                        <ol class="breadcrumb mb-4">
+                            <li class="breadcrumb-item">
+                                <a href="index.html">Dashboard</a>
+                            </li>
+                            <li class="breadcrumb-item active">Static Navigation</li>
+                        </ol>
+
+                        {% for message in app.flashes('success') %}
+                            <div class="alert alert-success">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+
+                        </br>
+
+                        <div class="row">
+                            {% for article in articles %}
+                                <div class="col-md-4 mb-4">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <a class="card-title" style="color: grey;">{{article.id}}</a>
+                                            <h5 class="card-title">{{ article.titre }}</h5>
+                                            <p class="card-text">{{ article.texte }}</p>
+                                            <img src="{{ asset('uploads/images/' ~ article.Image) }}" class="card-img-top" alt="Image_article">
+                                            </br>
+                                            <a style="color: grey;">Créé le {{article.date|date('d/m/Y H:i') }}</a>
+                                        </div>
+                                        <div class="card-footer">
+                                        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                                            <a href="{{ path('update_article', {'id': article.id}) }}" class="btn btn-primary">Modifier</a>
+                                            <a href="{{ path('delete_article', {'id': article.id}) }}" class="btn btn-danger">Supprimer</a>
+                                        {% endif %}
+                                        </div>
+                                    </div>
+                                </div>
+                            {% else %}
+                                <p>Aucun article disponible.</p>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </main>
+            </div>             
+        </div>
+    </div>
+
+{% endblock %}
